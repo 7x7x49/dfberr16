@@ -1,7 +1,7 @@
 package com.company;
 import java.util.Scanner;
 
-@FunctionalInterface
+@FunctionalInterface                                //указание на то, что интерфейс является функциональным
 interface Convert<T, N>{
     N convert(T t);    }
 
