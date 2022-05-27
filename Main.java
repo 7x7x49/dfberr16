@@ -1,71 +1,40 @@
 package com.company;
+import java.util.Scanner;
 
-import java.util.ArrayList;
+@FunctionalInterface
+interface Convert<T, N>{
+    N convert(T t);    }
 
-abstract class Deliver{
-    String name;
-    ArrayList<String> params = new ArrayList<>();
-    public String toString(){
-        return "Variant deliver:"+name+"\n"+params;
-    }
-}
+class Structure1{
+    int a, b, c;
+    public Structure1(int a, int b, int c){          //инициализация переменных
+        this.a = a;
+        this.b = b;
+        this.c = c;                       }
+                }
 
-abstract class DeliverVariants{
-    public abstract Deliver createDeliverVariant();
-}
+class Structure2{
+    int a, b, c;
+    public Structure2( int a, int b, int c){
+        this.a = a;
+        this.b = b;
+        this.c = c;                        }
 
-class TruckVariant extends DeliverVariants{
-    public Deliver createDeliverVariant(){
-        return new Truck();
-    }
-}
+   public int Zero(){
+        if(b==0){ return 0; }                         //если b=0, то всё выражение равно нулю
 
-class ShipVariant extends DeliverVariants{
-    public Deliver createDeliverVariant(){
-        return new Ship();
-    }
-}
-
-class AirplaneVariant extends DeliverVariants{
-    public Deliver createDeliverVariant(){
-        return new Airplane();
-    }
-}
-
-class Truck extends Deliver{
-    public Truck(){
-        name = "Truck";
-        params.add("Delivery time: 1week-1month");
-        params.add("\nDelivery cost:10$");
-    }
-}
-
-class Ship extends Deliver{
-    public Ship(){
-        name = "Ship";
-        params.add("Delivery time: 3 days - 1 week");
-        params.add("\nDelivery cost:40$");
-    }
-}
-
-class Airplane extends Deliver{
-    public Airplane(){
-        name = "Airplane";
-        params.add("Delivery time:1-3day");
-        params.add("\nDelivery cost:70$");
-    }
-}
+        else{ return (int) Math.pow(b, c) * a; }      //возведение b в степень c и умножение на а
+                    }
+                }
 
 public class Main{
     public static void main(String[] args) {
-        DeliverVariants TruckVariant1 = new TruckVariant();
-        DeliverVariants ShipVariant1 = new ShipVariant();
-        DeliverVariants AirplaneVariant1 = new AirplaneVariant();
-        Deliver Truck1 = TruckVariant1.createDeliverVariant();
-        Deliver Ship1 = ShipVariant1.createDeliverVariant();
-        Deliver Airplane1 = AirplaneVariant1.createDeliverVariant();
-        System.out.println(Truck1);
-        System.out.println(Ship1);
-        System.out.println(Airplane1);
-    }
-}
+        System.out.println("Enter 3 variables using Enter:\n" +
+                "a, b, c");
+        Scanner in = new Scanner(System.in);
+        Structure1 un = new Structure1(in.nextInt(), in.nextInt(), in.nextInt());
+        Convert<Structure1, Structure2> con = x -> new Structure2(x.a, x.b, x.c);
+        Structure2 deux = con.convert(un);
+        System.out.println(deux.a + " * " + deux.b + " ^ " + deux.c + " = " + deux.Zero());
+                                           }
+                 }
