@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 @FunctionalInterface                                //указание на то, что интерфейс является функциональным
 interface Convert<T, N>{
-    N convert(T t);    }
+    N convert(T t);    }                            //переход от типа T к типу N
 
 class Structure1{
     int a, b, c;
